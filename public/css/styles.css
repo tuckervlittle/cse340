@@ -5,8 +5,29 @@
   box-sizing: border-box;
 }
 
+
+/* Root
+***************************************** */
 :root {
   --blue: rgb(2, 113, 135);
+  --red: rgb(255, 0, 0);
+}
+
+/* <weight>: Use a value from 300 to 900 */
+/* <uniquifier>: Use a unique and descriptive class name */
+.rubik-font {
+  font-family: "Rubik", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+/* Body
+***************************************** */
+#wrapper {
+  width: 90%;
+  margin: auto auto;
+  padding: .5rem;
 }
 
 button {
@@ -16,15 +37,6 @@ button {
 
 button:hover {
   cursor: pointer;
-}
-
-
-/* Main
-***************************************** */
-#wrapper {
-  width: 90%;
-  margin: auto auto;
-  padding: .5rem;
 }
 
 /* --Header-- */
@@ -43,12 +55,12 @@ header {
 
 .sitename a, #tools a {
   text-decoration: none;
-  color: black;
+  color: var(--blue);
 }
 
 /* --Navigation-- */
 .navigation {
-  background: black;
+  background: var(--red);
   color: white;
   font-size: 1rem;
   list-style-type: none;
@@ -74,7 +86,8 @@ h1 {
 }
 
 .hero-hook {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 0, 0, 0.8);
+  border-radius: 1rem;
 
   position: absolute;
   bottom: 5%;
@@ -83,7 +96,7 @@ h1 {
 }
 
 .hero-hook * {
-  color: var(--blue);
+  color: white;
   font-weight: bolder;
 
   margin: .25rem;
@@ -122,9 +135,18 @@ h1 {
   align-items: center;
   text-align: center;
 }
+.hero-upgrades a {
+  background: var(--blue);
+  border-radius: .5rem;
+  text-decoration: none;
+  color: white;
+  margin: .25rem;
+  padding: .25rem;
+
+}
 
 .hero-upgrades img {
-  background: var(--blue);
+  background: var(--red);
   height: 100%;
 
   padding: 1.5rem;
