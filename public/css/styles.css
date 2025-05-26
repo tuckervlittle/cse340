@@ -61,15 +61,18 @@ header {
 /* --Navigation-- */
 .navigation {
   background: var(--red);
-  color: white;
   font-size: 1rem;
   list-style-type: none;
-
+  
   display: flex;
   justify-content: space-around;
   
   margin: 0;
   padding: .5rem;
+}
+.navigation a {
+  text-decoration: none;
+  color: white;
 }
 
 /* --Index-- */
@@ -152,6 +155,35 @@ h1 {
   padding: 1.5rem;
 }
 
+/* Vehicles Display */
+#inv-display {
+  display: grid;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 0;
+}
+.card {
+  list-style-type: none;
+  text-align: center;
+  padding: 1rem;
+  /* max-width: 50%; */
+}
+.namePrice a {
+  background: var(--blue);
+  border-radius: .25rem;
+  text-decoration: none;
+  color: white;
+  padding: .5rem;
+}
+.card img {
+  height: 100px;
+}
+
+.namePrice {
+  justify-self: center;
+  max-width: 90%;
+}
+/* Medium */
 @media screen and (min-width: 50rem) {
   
   body {
@@ -180,5 +212,17 @@ h1 {
   .hero-info {
     display: grid;
     grid-template-columns: 1fr 1fr;
+  }
+
+  #inv-display {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Large */
+@media screen and (min-width: 90rem) {
+  
+  #inv-display {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
