@@ -32,22 +32,26 @@ Util.buildClassificationGrid = async function (data) {
   if (data.length > 0) {
     grid = '<ul id="inv-display">'
     data.forEach(vehicle => {
+      // Wave had a warning about back-to-back links so moved the </a>
+      //  to include the div and removed the second <a>
       grid += '<li class="card">'
       grid += '<a href="../../inv/detail/' + vehicle.inv_id
         + '"title="view ' + vehicle.inv_make + ' ' + vehicle.inv_model
         + 'details"><img src="' + vehicle.inv_thumbnail
-        + '" alt="Image of ' + vehicle.inv_make + ' ' + vehicle.inv_model
-        + ' on CSE Motors" /></a>'
+        + '" alt="' + vehicle.inv_make + ' ' + vehicle.inv_model
+        + ' on CSE Motors" />'
+        grid += '<hr />'
       grid += '<div class="namePrice">'
-      grid += '<hr />'
       grid += '<h2>'
-      grid += '<a href="../../inv/detail' + vehicle.inv_id + '" title="view '
-        + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">'
-        + vehicle.inv_make + ' ' + vehicle.inv_model + '</a>'
-      grid += '<h2>'
+      grid += vehicle.inv_make + ' ' + vehicle.inv_model
+      // grid += '<a href="../../inv/detail/' + vehicle.inv_id + '" title="view '
+      //   + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">'
+      //   + vehicle.inv_make + ' ' + vehicle.inv_model + '</a>'
+      grid += '</h2>'
       grid += '<span>$'
         + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span>'
       grid += '</div>'
+      grid += '</a>'
       grid += '</li>'
     })
     grid += '</ul>'
@@ -55,6 +59,23 @@ Util.buildClassificationGrid = async function (data) {
     grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
   }
   return grid
+}
+
+/* **************************************
+* Build the Detail view HTML
+* ************************************ */
+Util.buildDetailView = async function (vehicle) {
+  const view = `
+  <div class="detail">
+    <img src="${vehicle.inv_image}" alt="${vehicle.inv_make} ${vehicle.inv_model}">
+    <div class="detail-info">
+      <h2>${vehicle.inv_make} ${vehicle.inv_model} Details</h2>
+      <p><b>Price: </b>$${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</p>
+      <p><b>Mileage: </b>${vehicle.inv_miles.toLocaleString()}</p>
+      <p><b>Description: </b>${vehicle.inv_description}</p>
+    </div>
+  </div>`
+  return view
 }
 
 /* ****************************************
