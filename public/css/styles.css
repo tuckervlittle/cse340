@@ -72,7 +72,7 @@ header {
 }
 .navigation a {
   text-decoration: none;
-  color: white;
+  color: black;
 }
 
 /* --Index-- */
@@ -155,6 +155,134 @@ h1 {
   padding: 1.5rem;
 }
 
+/* login */
+#login {
+  box-shadow: 0px 0px 1.5rem 15px rgba(156, 156, 156, 0.575);
+  background: var(--blue);
+  border: 2px solid #7a7a7a;
+  border-radius: .5rem;
+  min-width: fit-content;
+  max-width: 75%;
+  margin: 0 auto;
+  padding: 1rem;
+  justify-items: center;
+}
+
+#login h2,
+.password-list {
+  color: white;
+}
+
+.sign-up-in {
+  text-align: center;
+}
+
+.sign-up-in,
+.sign-up-in * {
+  color: white;
+  font-size: large;
+}
+
+.account-form {
+  width: 75%;
+}
+
+.account-form * {
+  display: block;
+}
+
+#pass {
+  display: grid;
+  grid-template-columns: 6fr 1fr;
+  column-gap: .5rem;
+  margin-bottom: 1rem;
+}
+
+#pass-label {
+  grid-column: 1/3;
+}
+
+#password {
+  max-height: 2rem;
+}
+
+#view-hide {
+  background: #3a3a3a8a;
+  box-shadow: none;
+  color: rgb(160, 160, 160);
+  border: none;
+  border-radius: 50%;
+  font-size: xx-large;
+  min-width: fit-content;
+  min-height: 0;
+  height: 2rem;
+  transform: translateY(-25%);
+  padding-bottom: 3rem;
+}
+
+.password-list {
+  font-size: large;
+  list-style-type: disc;
+  margin-top: 0;
+}
+
+.password-list * {
+  font-size: medium;
+}
+
+#login h3 {
+  color: white;
+  padding: .5rem 0 0 0;
+  margin: 0;
+  font-weight: normal;
+  font-size: large;
+}
+
+.no-has {
+  list-style-type: "❌ ";
+}
+
+.yes-has {
+  list-style-type: "✅ ";
+}
+
+.input {
+  font-size: larger;
+  color: white;
+  margin: .5rem 0;
+}
+
+input {
+  width: 100%;
+  min-height: 2rem;
+  border: none;
+  border-radius: 5px;
+}
+
+input:required:valid {
+  border-left: solid 6px green;
+}
+
+input:required:invalid {
+  border-left: solid 6px red;
+}
+
+
+#form-button {
+  justify-self: center;
+  background: white;
+  border-radius: 22px;
+  padding: 0 2rem;
+  font-size: large;
+}
+
+hr {
+  margin-top: 1rem;
+  height: 2px;
+  background: rgba(156, 156, 156, 0.575);
+  border: none;
+}
+
 /* Vehicles Display */
 #inv-display {
   display: grid;
@@ -208,6 +336,13 @@ h1 {
   width: 100%;
   border-radius: 1rem;
 }
+.notice li {
+  color: #258016;
+}
+.error li {
+  color: red;
+}
+
 /* Medium */
 @media screen and (min-width: 40rem) {
   
@@ -237,6 +372,19 @@ h1 {
   .hero-info {
     display: grid;
     grid-template-columns: 1fr 1fr;
+  }
+
+  .sign-up-in {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .sign-up-in p {
+    margin-left: -10px;
+  }
+  .sign-up-in a {
+    margin-left: 10px;
   }
 
   #inv-display {

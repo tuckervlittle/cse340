@@ -1,0 +1,38 @@
+<!-- Heading -->
+<% if (title) { %>
+  <h1>
+    <%= title %>
+  </h1>
+  <% } else { res.redirect('/') }%>
+  <%- messages() %>
+<div id="login">
+  <form class="account-form" action="/account/login" method="post">
+
+    <label for="account_email" class="input">Email:
+      <input id="account_email" type="email" name="account_email" required autocomplete="username">
+    </label>
+    <div id="pass">
+      <label id="pass-label" for="password" class="input">Password:</label>
+      <input id="password" type="password" name="account_password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required autocomplete="current-password">
+      <button type="button" id="view-hide">👁</button>
+    </div>
+
+    <button id="form-button" type="submit">Login</button>
+
+  </form>
+  <h3>Password must:</h3>
+  <ul class="password-list">
+    <li>Be 12 characters in length, minimum</li>
+    <li>Contain at least 1 capital letter</li>
+    <li>Contain at least 1 number</li>
+    <li>Contain at least 1 special character</li>
+  </ul>
+
+  <hr>
+
+  <div class="sign-up-in">
+    <p>Don't have an account? </p>
+    <a href="/account/register"> Sign-up</a>
+  </div>
+</div>
+<script src="/js/login.js" defer></script>

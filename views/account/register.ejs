@@ -1,0 +1,55 @@
+<!-- Heading -->
+<% if (title) { %>
+  <h1>
+    <%= title %>
+  </h1>
+  <% } else { res.redirect('/') }%>
+
+    <%- messages() %>
+
+  <% if (errors) { %>
+    <ul class="error">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+  <%  }) %>
+    </ul>
+  <% } %>
+  
+      <div id="login">
+        <h2>All fields are required</h2>
+        <form class="account-form" action="/account/register" method="post">
+
+          <label for="account_firstname" class="input">First Name:</label>
+          <input id="account_firstname" type="text" name="account_firstname" required autocomplete="given-name">
+
+          <label for="account_lastname" class="input">Last Name:</label>
+          <input id="account_lastname" type="text" name="account_lastname" required autocomplete="family-name">
+
+          <label for="account_email" class="input">Email:</label>
+          <input id="account_email" type="email" name="account_email" required autocomplete="email">
+
+          <div id="pass">
+            <label id="pass-label" for="password" class="input">Password:</label>
+            <input id="password" type="password" name="account_password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required autocomplete="new-password">
+            <button type="button" id="view-hide">👁</button>
+          </div>
+
+          <button id="form-button" type="submit">Register</button>
+          
+        </form>
+        <h3>Password must:</h3>
+        <ul class="password-list">
+          <li id="pass-len" class="no-has">Be 12 characters in length, minimum</li>
+          <li id="pass-cap" class="no-has">Contain at least 1 capital letter</li>
+          <li id="pass-num" class="no-has">Contain at least 1 number</li>
+          <li id="pass-spec" class="no-has">Contain at least 1 special character</li>
+        </ul>
+
+        <hr>
+
+        <div class="sign-up-in">
+          <p>Already have an Account? </p>
+          <a href="/account/login">Sign-in</a>
+        </div>
+      </div>
+      <script src="/js/login.js" defer></script>

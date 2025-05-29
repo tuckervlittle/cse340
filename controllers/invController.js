@@ -1,10 +1,10 @@
-const invModel = require("../models/inventory-model")
 const utilities = require("../utilities/")
+const invModel = require("../models/inventory-model")
 
 const invCont = {}
 
 /* ***************************
- *  Build inventory by classification view
+ *  Build inventory view by classification
  * ************************** */
 invCont.buildByClassificationId = async function (req, res, next) {
   const classification_id = req.params.classificationId
@@ -19,6 +19,9 @@ invCont.buildByClassificationId = async function (req, res, next) {
   })
 }
 
+/* ***************************
+ *  Build detail view by vehicle_id
+ * ************************** */
 invCont.buildByVehicleId = async function (req, res, next) {
   const vehicle_id = req.params.id
   console.log(vehicle_id)
