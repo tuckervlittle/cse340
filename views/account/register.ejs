@@ -20,13 +20,13 @@
         <form class="account-form" action="/account/register" method="post">
 
           <label for="account_firstname" class="input">First Name:</label>
-          <input id="account_firstname" type="text" name="account_firstname" required autocomplete="given-name">
+          <input id="account_firstname" type="text" name="account_firstname" required value="<%= locals.account_firstname %>" autocomplete="given-name">
 
           <label for="account_lastname" class="input">Last Name:</label>
-          <input id="account_lastname" type="text" name="account_lastname" required autocomplete="family-name">
+          <input id="account_lastname" type="text" name="account_lastname" required value="<%= locals.account_lastname %>" autocomplete="family-name">
 
           <label for="account_email" class="input">Email:</label>
-          <input id="account_email" type="email" name="account_email" required autocomplete="email">
+          <input id="account_email" type="email" name="account_email" required value="<%= locals.account_email %>" autocomplete="email">
 
           <div id="pass">
             <label id="pass-label" for="password" class="input">Password:</label>

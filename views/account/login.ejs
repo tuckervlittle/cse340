@@ -5,11 +5,22 @@
   </h1>
   <% } else { res.redirect('/') }%>
   <%- messages() %>
+
+  <% if (errors) { %>
+    <ul class="error">
+      <% errors.array().forEach(error=> { %>
+        <li>
+          <%= error.msg %>
+        </li>
+        <% }) %>
+    </ul>
+    <% } %>
+
 <div id="login">
   <form class="account-form" action="/account/login" method="post">
 
     <label for="account_email" class="input">Email:
-      <input id="account_email" type="email" name="account_email" required autocomplete="username">
+      <input id="account_email" type="email" name="account_email" required value="<%= locals.account_email %>" autocomplete="username">
     </label>
     <div id="pass">
       <label id="pass-label" for="password" class="input">Password:</label>
