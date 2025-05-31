@@ -15,9 +15,9 @@
     </ul>
   <% } %>
   
-      <div id="login">
+      <div id="form-div">
         <h2>All fields are required</h2>
-        <form class="account-form" action="/account/register" method="post">
+        <form id="account-form" action="/account/register" method="post">
 
           <label for="account_firstname" class="input">First Name:</label>
           <input id="account_firstname" type="text" name="account_firstname" required value="<%= locals.account_firstname %>" autocomplete="given-name">
