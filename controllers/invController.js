@@ -61,9 +61,8 @@ invCont.buildAddClassification = async function (req, res, next) {
  *  Deliver add-inventory view
  * ************************** */
 invCont.buildAddInventory = async function (req, res, next) {
-  const { classification_id } = req.body
   let nav = await utilities.getNav()
-  let classificationList = await utilities.buildClassificationList(classification_id)
+  let classificationList = await utilities.buildClassificationList()
   res.render("./inventory/add-inventory", {
     title: "Add Inventory",
     nav,
