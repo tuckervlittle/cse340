@@ -7,22 +7,26 @@
 
     <%- messages() %>
 
-  <% if (errors) { %>
-    <ul class="error">
-    <% errors.array().forEach(error=> { %>
-      <li><%= error.msg %></li>
-  <% }) %>
-    </ul>
-  <% } %>
+    <% if (errors) { %>
+      <ul class="error">
+        <% errors.array().forEach(error=> { %>
+          <% if (error.msg !='Invalid value' ) { %>
+    
+            <li>
+              <%= error.msg %>
+            </li>
+            <% } %>
+              <% }) %>
+      </ul>
+      <% }%>
     
     <div id="form-div">
       <h2>Field is Required</h2>
-      <form id="classification-form" action="./management" method="post">
+      <form id="classification-form" action="./add-classification" method="post">
     
         <label for="classification_name" class="input">Classification Name:
           <p class="instructions">*Name must be alphabetic characters only, no spaces.</p>
-          <input id="classification_name" type="text" name="classification_name" pattern="^[A-Za-z]{3,}$" required value="lolipop"
-            autocomplete="given-name">
+          <input id="classification_name" type="text" name="classification_name" pattern="^[A-Za-z]{3,}$" required value="<%= locals.classification_name %>">
         </label>
         <button id="form-button" type="submit">Add Classification</button>
 

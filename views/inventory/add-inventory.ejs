@@ -1,0 +1,59 @@
+<!-- Heading -->
+<% if (title) { %>
+  <h1>
+    <%= title %>
+  </h1>
+  <% } else { res.redirect('/') }%>
+
+    <%- messages() %>
+
+    <% if (errors) { %>
+      <ul class="error">
+        <% errors.array().forEach(error=> { %>
+          <% if (error.msg != 'Invalid value') { %>
+            
+            <li>
+              <%= error.msg %>
+            </li>
+        <% } %>
+          <% }) %>
+      </ul>
+      <% }%>
+    
+    <div id="form-div">
+      <h2>All Fields are Required</h2>
+      <form id="inventory-form" action="./add-inventory" method="post">
+    
+        <label for="classificationList" class="input">Classification:</label>
+        <%- classificationList %>
+
+        <label for="inv_make" class="input">Make:</label>
+        <input id="inv_make" type="text" name="inv_make" value="<%= locals.inv_make %>" pattern="^[A-Za-z ]+$" required>
+
+        <label for="inv_model" class="input">Model:</label>
+        <input id="inv_model" type="text" name="inv_model" value="<%= locals.inv_model %>" pattern="^[A-Za-z\d ]+$" required>
+        
+        <label for="inv_description" class="input">Description:</label>
+        <textarea id="inv_description" name="inv_description" rows="4" required placeholder=" "><%= locals.inv_description || '' %></textarea>
+        
+        <label for="inv_image" class="input">Image Path:</label>
+        <input id="inv_image" type="text" name="inv_image" value="<%= locals.inv_image %>" pattern="^([a-zA-Z0-9_\-/\\:.]+)$" required>
+        
+        <label for="inv_thumbnail" class="input">Thumbnail Path:</label>
+        <input id="inv_thumbnail" type="text" name="inv_thumbnail" value="<%= locals.inv_thumbnail %>" pattern="^([a-zA-Z0-9_\-/\\:.]+)$" required>
+        
+        <label for="inv_price" class="input">Price:</label>
+        <input id="inv_price" type="text" name="inv_price" value="<%= locals.inv_price %>" pattern="^\d+$" required>
+
+        <label for="inv_year" class="input">Year:</label>
+        <input id="inv_year" type="text" name="inv_year" value="<%= locals.inv_year %>" pattern="^\d{4}$" required>
+
+        <label for="inv_miles" class="input">Miles:</label>
+        <input id="inv_miles" type="text" name="inv_miles" value="<%= locals.inv_miles %>" pattern="^\d+$" required>
+
+        <label for="inv_color" class="input">Color:</label>
+        <input id="inv_color" type="text" name="inv_color" value="<%= locals.inv_color %>" pattern="^[A-Za-z ]+$" required>
+
+        <button id="form-button" type="submit">Add Vehicle</button>
+
+      </form>

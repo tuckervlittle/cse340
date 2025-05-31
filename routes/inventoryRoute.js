@@ -16,16 +16,25 @@ router.get('/detail/:id', utilities.handleErrors(invController.buildByVehicleId)
 router.get('', utilities.handleErrors(invController.buildManagement))
 // Build the addClassification view
 router.get('/add-classification', utilities.handleErrors(invController.buildAddClassification))
+// Build the addInventory view
+router.get('/add-inventory', utilities.handleErrors(invController.buildAddInventory))
 
 /* ***************
  *  Post Routes
  * ************** */
-// Send the registration data to the server
+// Send the classification data to the server
 router.post(
-  "/management",
+  "/add-classification",
   regValidate.addClassificationRules(),
   regValidate.checkClassificationData,
   utilities.handleErrors(invController.addClassification)
+)
+// Send the inventory data to the server
+router.post(
+  "/add-inventory",
+  regValidate.addInventoryRules(),
+  regValidate.checkInventoryData,
+  utilities.handleErrors(invController.addInventory)
 )
 
 module.exports = router;

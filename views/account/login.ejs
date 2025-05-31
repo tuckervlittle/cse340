@@ -9,12 +9,15 @@
   <% if (errors) { %>
     <ul class="error">
       <% errors.array().forEach(error=> { %>
-        <li>
-          <%= error.msg %>
-        </li>
-        <% }) %>
+        <% if (error.msg !='Invalid value' ) { %>
+  
+          <li>
+            <%= error.msg %>
+          </li>
+          <% } %>
+            <% }) %>
     </ul>
-    <% } %>
+    <% }%>
 
 <div id="form-div">
   <form class="account-form" action="/account/login" method="post">

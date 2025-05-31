@@ -7,13 +7,18 @@
 
     <%- messages() %>
 
-  <% if (errors) { %>
-    <ul class="error">
-    <% errors.array().forEach(error => { %>
-      <li><%= error.msg %></li>
-  <%  }) %>
-    </ul>
-  <% } %>
+    <% if (errors) { %>
+      <ul class="error">
+        <% errors.array().forEach(error=> { %>
+          <% if (error.msg !='Invalid value') { %>
+    
+            <li>
+              <%= error.msg %>
+            </li>
+            <% } %>
+              <% }) %>
+      </ul>
+      <% }%>
   
       <div id="form-div">
         <h2>All fields are required</h2>
