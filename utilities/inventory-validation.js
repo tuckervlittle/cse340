@@ -34,14 +34,14 @@ validate.addInventoryRules = () => {
     // A classification must be selected
     body("classification_id")
       .notEmpty()
-      .withMessage('Classification is required'),
+      .withMessage('(Required) Classification selection'),
     // Make must be letters and spaces with a length > 2
     body("inv_make")
       .trim()
       .notEmpty()
       .isLength({ min: 3 })
       .matches(/^[A-Za-z ]+$/)
-      .withMessage('Make: Only letters and spaces are allowed (no special characters)'),
+      .withMessage('(Required) Make: Only letters and spaces are allowed (no special characters)'),
     // Model must be letters and spaces with a length > 2
     body("inv_model")
       .trim()
