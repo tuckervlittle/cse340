@@ -391,6 +391,10 @@ hr {
   color: black;
 }
 
+#error-list {
+  list-style-type: none;
+}
+
 /* Notice/Error Messages */
 .notice,
 .error {

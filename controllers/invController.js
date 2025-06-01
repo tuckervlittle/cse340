@@ -39,9 +39,12 @@ invCont.buildByVehicleId = async function (req, res, next) {
  * ************************** */
 invCont.buildManagement = async function (req, res, next) {
   let nav = await utilities.getNav()
+  const notice = req.flash("notice");
+  
   res.render("./inventory/management", {
     title: "Manage Inventory",
     nav,
+    notice,
   })
 }
 
@@ -85,11 +88,12 @@ invCont.addClassification = async function (req, res) {
       "notice",
       `Classification "${classification_name}" Created.`
     )
-    res.status(201).render("inventory/management", {
-      title: "Manage Inventory",
-      nav,
-      errors: null,
-    })
+    return res.redirect(301, "/inv")
+    // res.status(201).render("inventory/management", {
+    //   title: "Manage Inventory",
+    //   nav,
+    //   errors: null,
+    // })
   } else { 
     req.flash("error", "Sorry, creating the classification failed.")
     res.status(501).render("inventory/add-classification", {
@@ -116,11 +120,12 @@ invCont.addInventory = async function (req, res) {
       "notice",
       `${inv_make} ${inv_model} added to inventory!`
     )
-    res.status(201).render("inventory/management", {
-      title: "Manage Inventory",
-      nav,
-      errors: null,
-    })
+    return res.redirect(301, "/inv")
+    // res.status(201).render("inventory/management", {
+    //   title: "Manage Inventory",
+    //   nav,
+    //   errors: null,
+    // })
   } else { 
     req.flash("error", "Sorry, adding the inventory failed.")
     res.status(501).render("inventory/add-inventory", {

@@ -6,11 +6,23 @@
 } %>
 
 <%- messages() %>
+<% if (notice) { %>
+  <ul id="errors" class="notice">
+    <li id="error-list"><%- notice  %></li>
+  </ul>
+  <% } %>
+
+<script >
+  const errors = document.getElementById('errors');
+  if (!errors.firstElementChild.innerHTML.trim()) {
+    errors.classList.remove('notice');
+  }
+</script>
 
 <!-- Management display -->
 <div id="management">
   <ul>
-    <li><a href="./add-classification">Add Classification</a></li>
-    <li><a href="./add-inventory">Add Vehicle</a></li>
+    <li><a href="inv/add-classification">Add Classification</a></li>
+    <li><a href="inv/add-inventory">Add Vehicle</a></li>
   </ul>
 </div>
