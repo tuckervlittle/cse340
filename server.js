@@ -17,6 +17,7 @@ const inventoryRoute = require("./routes/inventoryRoute")
 const accountRoute = require("./routes/accountRoute")
 const utilities = require("./utilities")
 const pool = require("./database/")
+const cookieParser = require("cookie-parser")
 
 /* ***********************
  * Middleware
@@ -40,6 +41,8 @@ app.use(function(req, res, next) {
 // Body-Parser
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(cookieParser())
+app.use(utilities.checkJWTToken)
 
 /* ***********************
  * View Engine and Templates

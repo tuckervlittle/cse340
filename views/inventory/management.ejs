@@ -12,13 +12,6 @@
   </ul>
   <% } %>
 
-<script >
-  const errors = document.getElementById('errors');
-  if (!errors.firstElementChild.innerHTML.trim()) {
-    errors.classList.remove('notice');
-  }
-</script>
-
 <!-- Management display -->
 <div id="management">
   <ul>
@@ -26,3 +19,12 @@
     <li><a href="inv/add-inventory">Add Vehicle</a></li>
   </ul>
 </div>
+
+<div id="inventory-manager">
+  <h2>Edit Inventory</h2>
+  <p>Select a classification from the list to view inventory</p>
+  <%- classificationSelect %>
+  <table id="inventoryDisplay"></table>
+  <noscript>JavaScript must be enabled to use this page.</noscript>
+</div>
+<script src="../../js/inventory.js"></script>
