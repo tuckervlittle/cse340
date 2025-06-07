@@ -36,6 +36,10 @@ router.get('/add-inventory',
 router.get('/edit/:id',
   utilities.handleErrors(invController.buildEditInventory)
 )
+// Build delete view by vehicle id
+router.get('/delete/:id',
+  utilities.handleErrors(invController.buildDeleteConfirmation)
+)
 
 /* ***************
  *  Post Routes
@@ -60,6 +64,11 @@ router.post(
   regValidate.addInventoryRules(),
   regValidate.checkUpdateData,
   utilities.handleErrors(invController.updateInventory)
+)
+// Send the inventory delete to the server
+router.post(
+  "/remove/",
+  utilities.handleErrors(invController.deleteInventory)
 )
 
 module.exports = router;
