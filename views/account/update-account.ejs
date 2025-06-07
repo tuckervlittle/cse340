@@ -1,0 +1,79 @@
+<!-- Heading -->
+<% if (title) { %>
+  <h1>
+    <%= title %>
+  </h1>
+  <% } else { res.redirect('/') }%>
+
+    <%- messages() %>
+
+      <% if (errors) { %>
+        <ul class="error">
+          <% errors.array().forEach(error=> { %>
+            <% if (error.msg !='Invalid value' ) { %>
+
+              <li>
+                <%= error.msg %>
+              </li>
+              <% } %>
+                <% }) %>
+        </ul>
+        <% }%>
+
+          <div id="form-div">
+            <h2>All fields are required</h2>
+            <form id="account-form" action="/account/update" method="post">
+
+              <label for="account_firstname" class="input">First Name:</label>
+              <input
+              id="account_firstname"
+              type="text"
+              name="account_firstname"
+              value="<%= locals.account_firstname %>"
+              required>
+
+              <label for="account_lastname" class="input">Last Name:</label>
+              <input
+              id="account_lastname"
+              type="text"
+              name="account_lastname"
+              value="<%= locals.account_lastname %>"
+              required>
+
+              <label for="account_email" class="input">Email:</label>
+              <input
+              id="account_email"
+              type="email"
+              name="account_email"
+              value="<%= locals.account_email %>"
+              required>
+
+              <input type="hidden" name="account_id" <% if(locals.account_id) { %> value="<%= locals.account_id %>"
+                <% } %>>
+
+              <button id="form-button" type="submit">Update Info</button>
+            </form>
+
+            <form class="account-form" action="/account/password" method="post">
+              <div id="pass">
+                <label id="pass-label" for="password" class="input">Password:</label>
+                <input id="password" type="password" name="account_password"
+                  pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required autocomplete="new-password">
+                <button type="button" id="view-hide">👁</button>
+              </div>
+
+              <input type="hidden" name="account_id" <% if(locals.account_id) { %> value="<%= locals.account_id %>"
+                <% } %>>
+                
+              <button id="form-button" type="submit">Update Password</button>
+            </form>
+
+            <h3>Password must:</h3>
+            <ul class="password-list">
+              <li id="pass-len" class="no-has">Be 12 characters in length, minimum</li>
+              <li id="pass-cap" class="no-has">Contain at least 1 capital letter</li>
+              <li id="pass-num" class="no-has">Contain at least 1 number</li>
+              <li id="pass-spec" class="no-has">Contain at least 1 special character</li>
+            </ul>
+          </div>
+          <script src="/js/login.js" defer></script>

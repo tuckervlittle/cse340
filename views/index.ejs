@@ -1,6 +1,18 @@
 <!-- <h1>Tucker Little</h1> -->
 <h1>Welcome to CSE Motors!</h1>
 <%- messages() %>
+<% if (errors) { %>
+    <ul class="error">
+        <% errors.array().forEach(error=> { %>
+            <% if (error.msg !='Invalid value' ) { %>
+
+                <li>
+                    <%= error.msg %>
+                </li>
+                <% } %>
+                    <% }) %>
+    </ul>
+    <% }%>
 <div class="hero">
     <img src="/images/vehicles/delorean.jpg" alt="delorean">
     <div class="hero-hook">

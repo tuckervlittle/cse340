@@ -17,6 +17,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
       title: className + " vehicles",
       nav,
       grid,
+      loggedIn: res.locals.loggedIn || false
     })
   } catch (error) {
     next(error)
@@ -35,7 +36,8 @@ invCont.buildByVehicleId = async function (req, res, next) {
     res.render("./inventory/detail", {
       title: `${data.inv_year} ${data.inv_make} ${data.inv_model}`,
       nav,
-      detailView
+      detailView,
+      loggedIn: res.locals.loggedIn || false
     })
   } catch (error) {
     next(error)

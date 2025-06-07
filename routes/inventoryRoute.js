@@ -18,6 +18,7 @@ router.get('/detail/:id',
 )
 // Build the management view
 router.get('',
+  utilities.authenticateAccount,
   utilities.handleErrors(invController.buildManagement)
 )
 // Build the getInventory view
@@ -26,18 +27,22 @@ router.get('/getInventory/:classification_id',
 )
 // Build the addClassification view
 router.get('/add-classification',
+  utilities.authenticateAccount,
   utilities.handleErrors(invController.buildAddClassification)
 )
 // Build the addInventory view
 router.get('/add-inventory',
+  utilities.authenticateAccount,
   utilities.handleErrors(invController.buildAddInventory)
 )
 // Build edit view by vehicle id
 router.get('/edit/:id',
+  utilities.authenticateAccount,
   utilities.handleErrors(invController.buildEditInventory)
 )
 // Build delete view by vehicle id
 router.get('/delete/:id',
+  utilities.authenticateAccount,
   utilities.handleErrors(invController.buildDeleteConfirmation)
 )
 

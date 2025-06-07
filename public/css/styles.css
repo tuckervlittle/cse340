@@ -58,6 +58,14 @@ header {
   color: var(--blue);
 }
 
+#tools hr {
+  margin: .25rem;
+}
+
+#tools {
+  text-align: right;
+}
+
 /* --Navigation-- */
 .navigation {
   background: var(--red);
@@ -355,7 +363,8 @@ hr {
 
 /* Management Display */
 #management,
-#inventory-manager {
+#inventory-manager,
+.account-management {
   box-shadow: 0px 0px 1.5rem 15px rgba(156, 156, 156, 0.575);
   background: var(--blue);
   border: 2px solid #7a7a7a;
@@ -379,14 +388,21 @@ hr {
   margin-top: 2rem;
 }
 
-#management a {
+.account-management h2 {
+  margin: 0 0 2rem 0;
+  font-size: larger;
+}
+
+#management a,
+.account-management a {
   padding: .75rem;
   background: white;
   border-radius: .5rem;
 }
 
 #management li,
-#management a {
+#management a,
+.account-management a {
   list-style-type: none;
   text-decoration: none;
   color: black;
