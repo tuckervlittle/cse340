@@ -139,6 +139,9 @@ accountCont.accountLogin = async function (req, res) {
   }
 }
 
+/* ****************************************
+*  Deliver Account Management view
+* *************************************** */
 accountCont.buildAccountManagement = async function (req, res, next) {
   let nav = await utilities.getNav()
   // const notice = req.flash("notice");
@@ -169,6 +172,9 @@ accountCont.buildAccountManagement = async function (req, res, next) {
   })
 }
 
+/* ****************************************
+*  Deliver Edit Account view
+* *************************************** */
 accountCont.buildEditAccount = async function (req, res, next) {
   try {
       const account_id = parseInt(req.params.id)
@@ -188,6 +194,9 @@ accountCont.buildEditAccount = async function (req, res, next) {
     }
 }
 
+/* ****************************************
+ *  Process Update Account Info request
+ * ************************************ */
 accountCont.updateAccount = async function (req, res, next) {
   try {
     const {
@@ -216,26 +225,32 @@ accountCont.updateAccount = async function (req, res, next) {
   }
 }
 
-accountCont.logout = async function (req, res) {
-  res.clearCookie("jwt")
-  req.flash("notice", "You have been signed out.")
-  res.redirect("/")
-}
-
+/* ****************************************
+ *  Process Password Update request
+ * ************************************ */
 accountCont.updatePassword = async function (req, res, next) {
-  const { account_id, account_password } = req.body;
-  const hashedPassword = await bcrypt.hash(account_password, 10);
+  const { account_id, account_password } = req.body
+  const hashedPassword = await bcrypt.hash(account_password, 10)
   const updateResult = await accountModel.updatePassword(
     account_id,
     hashedPassword
   );
   if (updateResult.rowCount) {
-    req.flash("notice", "Password updated successfully.");
-    res.redirect("/account/");
+    req.flash("notice", "Password updated successfully.")
+    res.redirect("/account/")
   } else {
-    req.flash("notice", "Password update failed.");
-    res.redirect(`/account/update/${account_id}`);
+    req.flash("notice", "Password update failed.")
+    res.redirect(`/account/update/${account_id}`)
   }
+}
+
+/* ****************************************
+ *  Logout request, delete cookies and send to home
+ * ************************************ */
+accountCont.logout = async function (req, res) {
+  res.clearCookie("jwt")
+  req.flash("notice", "You have been signed out.")
+  res.redirect("/")
 }
 
 module.exports = accountCont

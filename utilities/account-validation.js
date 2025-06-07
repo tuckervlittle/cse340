@@ -211,14 +211,17 @@ validate.updatePasswordRules = () => {
         minSymbols: 1,
       })
       .withMessage("Password does not meet requirements."),
-  ];
+  ]
 }
 
+/* ******************************
+ * Check Updated password and return errors or continue to account
+ * ***************************** */
 validate.checkRegDataUpdatePassword = async (req, res, next) => {
-  const { account_email } = req.body;
-  let errors = validationResult(req);
+  const { account_email } = req.body
+  let errors = validationResult(req)
   if (!errors.isEmpty()) {
-    let nav = await utilities.getNav();
+    let nav = await utilities.getNav()
     res.render("account/update-account", {
       errors,
       title: "Update Account",
@@ -227,10 +230,10 @@ validate.checkRegDataUpdatePassword = async (req, res, next) => {
       account_lastname: res.locals.accountData.account_lastname,
       account_email: res.locals.accountData.account_email,
       loggedin: res.locals.loggedin || false,
-    });
-    return;
+    })
+    return
   }
-  next();
+  next()
 }
 
 module.exports = validate
