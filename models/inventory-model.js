@@ -27,6 +27,9 @@ invModel.getInventoryByClassificationId = async function (classification_id) {
   }
 }
 
+/* ***************************
+ *  Get vehicle data by inv_id
+ * ************************** */
 invModel.getVehicleById = async function (id) {
   try {
     const data = await pool.query(

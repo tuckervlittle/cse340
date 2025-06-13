@@ -68,16 +68,50 @@ Util.buildClassificationGrid = async function (data) {
 * Build the Detail view HTML
 * ************************************ */
 Util.buildDetailView = async function (vehicle) {
-  const view = `
-  <div class="detail">
-    <img src="${vehicle.inv_image}" alt="${vehicle.inv_make} ${vehicle.inv_model}">
-    <div class="detail-info">
-      <h2>${vehicle.inv_make} ${vehicle.inv_model} Details</h2>
-      <p><b>Price: </b>$${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</p>
-      <p><b>Mileage: </b>${vehicle.inv_miles.toLocaleString()}</p>
-      <p><b>Description: </b>${vehicle.inv_description}</p>
+  let commentsHTML = ``
+
+  if (vehicle.comments && vehicle.comments.length > 0) {
+    commentsHTML += `<section class="comments">
+      <h2>Comments</h2>
+      <ul>`
+    vehicle.comments.forEach(comment => {
+      commentsHTML += `<li class="comment-grid">
+        <p><strong>${comment.account_firstname} ${comment.account_lastname}</strong>
+        (${new Date(comment.comment_date).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric'})}):</p>
+        <p>${comment.comment_text}</p>
+      </li>`
+    })
+    commentsHTML += `</ul></section>`
+  } else {
+    commentsHTML = `<section class="comments"><h3>Comments</h3><p id="no-comment">No comments yet for this vehicle.</p></section>`
+  }
+
+  const commentForm = `
+    <div id="form-div" class="comment">
+      <h3>Add a Comment</h3>
+      <form id="comment" action="/comment/add" method="POST">
+        <input type="hidden" name="inv_id" value="${vehicle.inv_id}">
+          <label for="comment_text">Your Comment:</label>
+          <textarea name="comment_text" id="comment_text" rows="2" placeholder=" " required></textarea>
+        <button id="form-button" type="submit">Post Comment</button>
+      </form>
     </div>
-  </div>`
+  `
+
+  const view = `
+    <div class="detail">
+      <img src="${vehicle.inv_image}" alt="${vehicle.inv_make} ${vehicle.inv_model}">
+      <div class="detail-info">
+        <h2>${vehicle.inv_make} ${vehicle.inv_model} Details</h2>
+        <p><b>Price: </b>$${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</p>
+        <p><b>Mileage: </b>${vehicle.inv_miles.toLocaleString()}</p>
+        <p><b>Description: </b>${vehicle.inv_description}</p>
+        </div>
+        ${commentForm}
+        ${commentsHTML}
+    </div>
+  `
+
   return view
 }
 
@@ -148,12 +182,12 @@ Util.checkLogin = (req, res, next) => {
  *  Authenticate Account Type
  * ************************************ */
 Util.authenticateAccount = (req, res, next) => {
-  const accountType = res.locals.accountData?.account_type;
+  const accountType = res.locals.accountData?.account_type
   if (accountType === "Employee" || accountType === "Admin") {
-    return next();
+    return next()
   }
-  req.flash("notice", "You do not have permission to access this area.");
-  res.redirect("/account/login");
+  req.flash("notice", "You do not have permission to access this area.")
+  res.redirect("/account/login")
 }
 
 module.exports = Util

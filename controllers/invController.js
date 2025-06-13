@@ -1,5 +1,6 @@
 const utilities = require("../utilities/")
 const invModel = require("../models/inventory-model")
+const commentModel = require("../models/comment-model")
 
 const invCont = {}
 
@@ -31,6 +32,8 @@ invCont.buildByVehicleId = async function (req, res, next) {
   try {
     const vehicle_id = req.params.id
     const data = await invModel.getVehicleById(vehicle_id)
+    const comments = await commentModel.getCommentsByVehicleId(vehicle_id)
+    data.comments = comments
     const nav = await utilities.getNav()
     const detailView = await utilities.buildDetailView(data)
     res.render("./inventory/detail", {
@@ -51,7 +54,7 @@ invCont.buildManagement = async function (req, res, next) {
   try {
     let nav = await utilities.getNav()
     const classificationSelect = await utilities.buildClassificationList()
-    const notice = req.flash("notice");
+    const notice = req.flash("notice")
     res.render("./inventory/management", {
       title: "Manage Inventory",
       nav,

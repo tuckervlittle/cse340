@@ -15,6 +15,7 @@ const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
 const accountRoute = require("./routes/accountRoute")
+const commentRoute = require("./routes/commentRoute")
 const utilities = require("./utilities")
 const pool = require("./database/")
 const cookieParser = require("cookie-parser")
@@ -62,6 +63,8 @@ app.get("/", utilities.handleErrors(baseController.buildHome))
 app.use("/inv", inventoryRoute)
 // Account Route
 app.use("/account", accountRoute)
+// Comment Route
+app.use("/comment", commentRoute)
 // 404 Route
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page'})
