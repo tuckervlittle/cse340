@@ -352,6 +352,19 @@ hr {
   border-radius: 4px;
 }
 
+.detail {
+  display: flex;
+  flex-direction: column;
+}
+
+.comments {
+  order: 1;
+}
+
+.comment {
+  order: 2;
+}
+
 .detail-info {
   border-bottom: 2px solid black;
   margin-bottom: 1rem;
@@ -580,6 +593,14 @@ tr {
 
   .detail-info {
     border: none;
+  }
+
+  .comments {
+    order: 2;
+  }
+
+  .comment {
+    order: 1;
   }
 }
 
